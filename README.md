@@ -29,20 +29,21 @@ title={{SQ}aLe: A large text-to-{SQL} corpus grounded in real schemas},
 author={Cornelius Wolff and Daniel Gomm and Madelon Hulsebos},
 booktitle={EurIPS 2025 Workshop: AI for Tabular Data},
 year={2025},
-url={[https://openreview.net/forum?id=6PsKDjgoEy]}
-}
+url={https://openreview.net/forum?id=6PsKDjgoEy}
+} 
+```
 ##  Development Log (Dev Diary)
 
-###Phase 1: Data Engineering & AI Inference Setup (In Progress)
--[x] Set up an isolated Python virtual environment optimized for Apple Silicon.
--[x] Build a robust ETL pipeline to extract, shuffle, and transform a 100,000-row sample from the trl-lab/SQaLe-text-to-SQL-dataset into MLX-compatible JSONL format.
--[ ] Download and configure the Qwen3.5-9B-MLX-4bit base model.
--[ ] Execute local LoRA fine-tuning on the SQaLe dataset to master JOINs and complex aggregations.
--[ ] Wrap the fine-tuned model in a lightweight FastAPI server to act as an independent microservice.
+### Phase 1: Data Engineering & AI Inference Setup (In Progress)
+- [x] Set up an isolated Python virtual environment optimized for Apple Silicon.
+- [x] Build a robust ETL pipeline to extract, shuffle, and transform a 100,000-row sample from the trl-lab/SQaLe-text-to-SQL-dataset into MLX-compatible JSONL format.
+- [ ] Download and configure the Qwen3.5-9B-MLX-4bit base model.
+- [ ] Execute local LoRA fine-tuning on the SQaLe dataset to master JOINs and complex aggregations.
+- [ ] Wrap the fine-tuned model in a lightweight FastAPI server to act as an independent microservice.
 
 ### Phase 2: Full-Stack Integration (Upcoming)
 
--[ ] Set up the Java & Spring Boot project structure.
--[ ] Establish secure connections between Spring Boot and the PostgreSQL database.
--[ ] Build REST API endpoints in Spring Boot to communicate with the Python FastAPI AI microservice.
--[ ] Develop the React Frontend to capture user input, display queried tabular data, and render dynamic analytical charts.
+- [ ] Set up the Java & Spring Boot project structure.
+- [ ] Establish secure connections between Spring Boot and the PostgreSQL database.
+- [ ] Build REST API endpoints in Spring Boot to communicate with the Python FastAPI AI microservice.
+- [ ] Develop the React Frontend to capture user input, display queried tabular data, and render dynamic analytical charts.
