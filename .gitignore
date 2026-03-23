@@ -6,3 +6,6 @@ adapters/
 data/
 
 .DS_Store
+
+*.parquet
+*.arrow

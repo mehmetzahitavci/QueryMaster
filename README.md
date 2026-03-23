@@ -1,4 +1,4 @@
-# QueryMaster: End-to-End Text-to-SQL Autonomous Agent (V2)
+# QueryMaster: End-to-End Text-to-SQL Autonomous Agent 
 
 QueryMaster is an AI-driven, full-stack data engineering and microservices solution designed to autonomously translate natural language questions into complex, optimized SQL queries and visualize the results. 
 
