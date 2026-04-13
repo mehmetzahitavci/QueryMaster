@@ -1,49 +1,40 @@
 # QueryMaster: End-to-End Text-to-SQL Autonomous Agent
 
-QueryMaster is an AI-driven, full-stack data engineering and microservices solution designed to autonomously translate natural language questions into complex, optimized SQL queries and visualize the results. 
+QueryMaster is an AI-driven data engineering solution designed to autonomously translate natural language questions into complex, optimized SQL queries.
 
-Built on a robust **Microservices Architecture**, this project combines advanced **Large Language Model (LLM) fine-tuning** with a highly scalable **Java & Spring Boot backend**, completely automating the process of database querying and data visualization for non-technical users.
+Built on a scalable architecture, this project combines advanced Large Language Model (LLM) fine-tuning with a lightweight frontend, automating the process of database querying for non-technical users.
 
-##  Project Architecture
+## Project Architecture
 
-The system operates on a seamless, enterprise-grade microservices pipeline:
-1. **Frontend (React):** A user-friendly interface where users input natural language questions and view returned data dynamically through integrated charts (e.g., Bar, Pie, Line charts).
-2. **Primary Backend (Spring Boot & Java):** The core server that handles API requests, manages business logic, securely executes generated SQL queries directly on a **PostgreSQL** database, and serves data back to the frontend.
-3. **AI Inference Microservice (Python & FastAPI):** A lightweight, isolated AI server housing the fine-tuned LLM. It receives prompts from the Spring Boot backend, generates the raw SQL, and returns it for execution.
-4. **AI Engine (Model Fine-Tuning):** Leveraging the state-of-the-art **Qwen3.5-9B-MLX-4bit** model, fine-tuned specifically for Text-to-SQL tasks (handling complex JOINs and subqueries) using Parameter-Efficient Fine-Tuning (LoRA) optimized for Apple Silicon (MLX).
+The system operates on a seamless pipeline:
+1. **Midterm Demo Interface (Streamlit):** A user-friendly, Python-based web application developed for the midterm presentation, allowing real-time schema input and natural language querying.
+2. **AI Inference Engine (Model Fine-Tuning):** Leveraging the Qwen3-8B-4bit model, fine-tuned specifically for Text-to-SQL tasks (handling complex JOINs and subqueries) using Parameter-Efficient Fine-Tuning (LoRA) optimized for Apple Silicon (MLX).
+3. **Future Microservices Integration:** Transitioning to a Java Spring Boot backend and React frontend for the final production deployment.
 
-##  Tech Stack
-* **AI, Data Engineering & Inference:** Python, Pandas, Hugging Face Datasets, MLX (Apple Silicon Optimization), FastAPI.
-* **Server-Side Core:** Java, Spring Boot.
-* **Database:** PostgreSQL.
-* **Frontend & Visualization:** React, Charting Libraries (e.g., Recharts / Chart.js).
+## Tech Stack
+* **AI, Data Engineering & Inference:** Python, mlx-lm (Apple Silicon Optimization), Hugging Face Datasets.
+* **Frontend (Midterm Prototype):** Streamlit.
+* **Planned Production Stack:** Java, Spring Boot, PostgreSQL, React, FastAPI.
 
-##  Dataset & Acknowledgments
-For the fine-tuning process, the model is trained on the highly comprehensive **SQaLe Text-to-SQL dataset** to ensure mastery over real-world relational schemas and advanced SQL operations.
+## Datasets & Evaluation
+For the fine-tuning process, the model was trained on a robust mixture of datasets to ensure mastery over real-world relational schemas:
+* **Training Data:** A combination of the **BIRD** and **SynSQL** datasets to expose the model to highly complex, cross-domain database schemas.
+* **Evaluation Data:** The model was benchmarked using the **Spider 1.0** development set.
+* **Midterm Benchmark Score:** Achieved a strict Execution Accuracy of **67.4%** on the Spider evaluation suite.
 
-**Citation:**
-```bibtex
-@inproceedings{
-wolff2025sqale,
-title={{SQ}aLe: A large text-to-{SQL} corpus grounded in real schemas},
-author={Cornelius Wolff and Daniel Gomm and Madelon Hulsebos},
-booktitle={EurIPS 2025 Workshop: AI for Tabular Data},
-year={2025},
-url={https://openreview.net/forum?id=6PsKDjgoEy}
-} 
-```
-##  Development Log (Dev Diary)
+## Development Log (Dev Diary)
 
-### Phase 1: Data Engineering & AI Inference Setup (In Progress)
+### Phase 1: Data Engineering, AI Inference & Prototyping (Completed for Midterm)
 - [x] Set up an isolated Python virtual environment optimized for Apple Silicon.
-- [x] Build a robust ETL pipeline to extract, shuffle, and transform a 100,000-row sample from the trl-lab/SQaLe-text-to-SQL-dataset into MLX-compatible JSONL format.
-- [ ] Download and configure the Qwen3.5-9B-MLX-4bit base model.
-- [ ] Execute local LoRA fine-tuning on the SQaLe dataset to master JOINs and complex aggregations.
-- [ ] Wrap the fine-tuned model in a lightweight FastAPI server to act as an independent microservice.
+- [x] Build a robust ETL pipeline to extract and transform the BIRD and SynSQL datasets into MLX-compatible ChatML format.
+- [x] Download and configure the Qwen3-8B-4bit base model.
+- [x] Execute local LoRA fine-tuning to master JOINs and complex aggregations.
+- [x] Evaluate the model using the Spider benchmark.
+- [x] Develop a live interactive web interface using Streamlit for the midterm demonstration.
 
-### Phase 2: Full-Stack Integration (Upcoming)
-
+### Phase 2: Full-Stack Integration (Upcoming for Final)
 - [ ] Set up the Java & Spring Boot project structure.
-- [ ] Establish secure connections between Spring Boot and the PostgreSQL database.
-- [ ] Build REST API endpoints in Spring Boot to communicate with the Python FastAPI AI microservice.
-- [ ] Develop the React Frontend to capture user input, display queried tabular data, and render dynamic analytical charts.
+- [ ] Establish secure connections between Spring Boot and a PostgreSQL database.
+- [ ] Wrap the fine-tuned model in a FastAPI microservice.
+- [ ] Build REST API endpoints in Spring Boot to communicate with the Python AI microservice.
+- [ ] Develop the React frontend to capture user input and render dynamic analytical charts.

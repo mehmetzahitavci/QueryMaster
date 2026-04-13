@@ -1,0 +1,452 @@
+[
+  {
+    "id": 0,
+    "db_id": "concert_singer",
+    "question": "How many singers do we have?",
+    "gold_sql": "SELECT count(*) FROM singer",
+    "pred_sql": "SELECT COUNT(*) FROM singer",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 1,
+    "db_id": "concert_singer",
+    "question": "What is the total number of singers?",
+    "gold_sql": "SELECT count(*) FROM singer",
+    "pred_sql": "SELECT COUNT(*) FROM singer",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 2,
+    "db_id": "concert_singer",
+    "question": "Show name, country, age for all singers ordered by age from the oldest to the youngest.",
+    "gold_sql": "SELECT name ,  country ,  age FROM singer ORDER BY age DESC",
+    "pred_sql": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 3,
+    "db_id": "concert_singer",
+    "question": "What are the names, countries, and ages for every singer in descending order of age?",
+    "gold_sql": "SELECT name ,  country ,  age FROM singer ORDER BY age DESC",
+    "pred_sql": "SELECT Name, Country, Age FROM singer ORDER BY Age DESC",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 4,
+    "db_id": "concert_singer",
+    "question": "What is the average, minimum, and maximum age of all singers from France?",
+    "gold_sql": "SELECT avg(age) ,  min(age) ,  max(age) FROM singer WHERE country  =  'France'",
+    "pred_sql": "SELECT AVG(Age) AS Average_Age, MIN(Age) AS Minimum_Age, MAX(Age) AS Maximum_Age FROM singer WHERE Country = 'France'",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 5,
+    "db_id": "concert_singer",
+    "question": "What is the average, minimum, and maximum age for all French singers?",
+    "gold_sql": "SELECT avg(age) ,  min(age) ,  max(age) FROM singer WHERE country  =  'France'",
+    "pred_sql": "SELECT AVG(Age) AS Average_Age, MIN(Age) AS Minimum_Age, MAX(Age) AS Maximum_Age FROM singer WHERE Country = 'French'",
+    "match": false,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 6,
+    "db_id": "concert_singer",
+    "question": "Show the name and the release year of the song by the youngest singer.",
+    "gold_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1",
+    "pred_sql": "SELECT s.Name, s.Song_release_year FROM singer s WHERE s.Age = (SELECT MIN(Age) FROM singer)",
+    "match": false,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 7,
+    "db_id": "concert_singer",
+    "question": "What are the names and release years for all the songs of the youngest singer?",
+    "gold_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1",
+    "pred_sql": "SELECT s.Name, s.Song_Release_Year FROM singer s INNER JOIN singer_in_concert sc ON s.Singer_ID = sc.Singer_ID INNER JOIN concert c ON sc.concert_ID = c.concert_ID WHERE s.Age = (SELECT MIN(Age) FROM singer)",
+    "match": false,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 8,
+    "db_id": "concert_singer",
+    "question": "What are all distinct countries where singers above age 20 are from?",
+    "gold_sql": "SELECT DISTINCT country FROM singer WHERE age  >  20",
+    "pred_sql": "SELECT DISTINCT Country FROM singer WHERE Age > 20",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 9,
+    "db_id": "concert_singer",
+    "question": "What are  the different countries with singers above age 20?",
+    "gold_sql": "SELECT DISTINCT country FROM singer WHERE age  >  20",
+    "pred_sql": "SELECT Country FROM singer WHERE Age > 20 GROUP BY Country",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 10,
+    "db_id": "concert_singer",
+    "question": "Show all countries and the number of singers in each country.",
+    "gold_sql": "SELECT country ,  count(*) FROM singer GROUP BY country",
+    "pred_sql": "SELECT Country, COUNT(Singer_ID) FROM singer GROUP BY Country",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 11,
+    "db_id": "concert_singer",
+    "question": "How many singers are from each country?",
+    "gold_sql": "SELECT country ,  count(*) FROM singer GROUP BY country",
+    "pred_sql": "SELECT Country, COUNT(Singer_ID) FROM singer GROUP BY Country",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 12,
+    "db_id": "concert_singer",
+    "question": "List all song names by singers above the average age.",
+    "gold_sql": "SELECT song_name FROM singer WHERE age  >  (SELECT avg(age) FROM singer)",
+    "pred_sql": "SELECT s.Song_Name FROM singer s WHERE s.Age > (SELECT AVG(Age) FROM singer)",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 13,
+    "db_id": "concert_singer",
+    "question": "What are all the song names by singers who are older than average?",
+    "gold_sql": "SELECT song_name FROM singer WHERE age  >  (SELECT avg(age) FROM singer)",
+    "pred_sql": "SELECT s.Song_Name FROM singer s WHERE s.Age > (SELECT AVG(s2.Age) FROM singer s2)",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 14,
+    "db_id": "concert_singer",
+    "question": "Show location and name for all stadiums with a capacity between 5000 and 10000.",
+    "gold_sql": "SELECT LOCATION ,  name FROM stadium WHERE capacity BETWEEN 5000 AND 10000",
+    "pred_sql": "SELECT Location, Name FROM stadium WHERE Capacity BETWEEN 5000 AND 10000",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 15,
+    "db_id": "concert_singer",
+    "question": "What are the locations and names of all stations with capacity between 5000 and 10000?",
+    "gold_sql": "SELECT LOCATION ,  name FROM stadium WHERE capacity BETWEEN 5000 AND 10000",
+    "pred_sql": "SELECT Name, Location FROM stadium WHERE Capacity BETWEEN 5000 AND 10000",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 16,
+    "db_id": "concert_singer",
+    "question": "What is the maximum capacity and the average of all stadiums ?",
+    "gold_sql": "select max(capacity), average from stadium",
+    "pred_sql": "SELECT MAX(Capacity), AVG(Capacity) FROM stadium",
+    "match": false,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 17,
+    "db_id": "concert_singer",
+    "question": "What is the average and maximum capacities for all stadiums ?",
+    "gold_sql": "select avg(capacity) ,  max(capacity) from stadium",
+    "pred_sql": "SELECT AVG(Capacity), MAX(Capacity) FROM stadium",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 18,
+    "db_id": "concert_singer",
+    "question": "What is the name and capacity for the stadium with highest average attendance?",
+    "gold_sql": "SELECT name ,  capacity FROM stadium ORDER BY average DESC LIMIT 1",
+    "pred_sql": "SELECT Name, Capacity FROM stadium WHERE Average = (SELECT MAX(Average) FROM stadium)",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 19,
+    "db_id": "concert_singer",
+    "question": "What is the name and capacity for the stadium with the highest average attendance?",
+    "gold_sql": "SELECT name ,  capacity FROM stadium ORDER BY average DESC LIMIT 1",
+    "pred_sql": "SELECT Name, Capacity FROM stadium WHERE Average = (SELECT MAX(Average) FROM stadium)",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 20,
+    "db_id": "concert_singer",
+    "question": "How many concerts are there in year 2014 or 2015?",
+    "gold_sql": "SELECT count(*) FROM concert WHERE YEAR  =  2014 OR YEAR  =  2015",
+    "pred_sql": "SELECT COUNT(*) FROM concert WHERE Year IN ('2014', '2015')",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 21,
+    "db_id": "concert_singer",
+    "question": "How many concerts occurred in 2014 or 2015?",
+    "gold_sql": "SELECT count(*) FROM concert WHERE YEAR  =  2014 OR YEAR  =  2015",
+    "pred_sql": "SELECT COUNT(DISTINCT concert_ID) FROM concert WHERE Year IN ('2014', '2015')",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 22,
+    "db_id": "concert_singer",
+    "question": "Show the stadium name and the number of concerts in each stadium.",
+    "gold_sql": "SELECT T2.name ,  count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id GROUP BY T1.stadium_id",
+    "pred_sql": "SELECT s.Name, COUNT(c.concert_ID) FROM stadium s JOIN concert c ON s.Stadium_ID = c.Stadium_ID GROUP BY s.Stadium_ID",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 23,
+    "db_id": "concert_singer",
+    "question": "For each stadium, how many concerts play there?",
+    "gold_sql": "SELECT T2.name ,  count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id GROUP BY T1.stadium_id",
+    "pred_sql": "SELECT T2.Stadium_ID, COUNT(T1.concert_ID) FROM concert AS T1 INNER JOIN stadium AS T2 ON T1.Stadium_ID = T2.Stadium_ID GROUP BY T2.Stadium_ID",
+    "match": false,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 24,
+    "db_id": "concert_singer",
+    "question": "Show the stadium name and capacity with most number of concerts in year 2014 or after.",
+    "gold_sql": "SELECT T2.name ,  T2.capacity FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  >=  2014 GROUP BY T2.stadium_id ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "SELECT s.Name, s.Capacity FROM stadium s JOIN concert c ON s.Stadium_ID = c.Stadium_ID WHERE c.Year >= '2014' GROUP BY s.Stadium_ID ORDER BY COUNT(c.concert_ID) DESC LIMIT 1",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 25,
+    "db_id": "concert_singer",
+    "question": "What is the name and capacity of the stadium with the most concerts after 2013 ?",
+    "gold_sql": "select t2.name ,  t2.capacity from concert as t1 join stadium as t2 on t1.stadium_id  =  t2.stadium_id where t1.year  >  2013 group by t2.stadium_id order by count(*) desc limit 1",
+    "pred_sql": "SELECT s.Name, s.Capacity FROM stadium s JOIN concert c ON s.Stadium_ID = c.Stadium_ID WHERE c.Year > '2013' GROUP BY s.Stadium_ID ORDER BY COUNT(c.concert_ID) DESC LIMIT 1",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 26,
+    "db_id": "concert_singer",
+    "question": "Which year has most number of concerts?",
+    "gold_sql": "SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "SELECT Year FROM concert GROUP BY Year ORDER BY COUNT(*) DESC LIMIT 1",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 27,
+    "db_id": "concert_singer",
+    "question": "What is the year that had the most concerts?",
+    "gold_sql": "SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "SELECT Year FROM concert GROUP BY Year ORDER BY COUNT(*) DESC LIMIT 1",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 28,
+    "db_id": "concert_singer",
+    "question": "Show the stadium names without any concert.",
+    "gold_sql": "SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)",
+    "pred_sql": "SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT DISTINCT Stadium_ID FROM concert)",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 29,
+    "db_id": "concert_singer",
+    "question": "What are the names of the stadiums without any concerts?",
+    "gold_sql": "SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)",
+    "pred_sql": "SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT DISTINCT Stadium_ID FROM concert)",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 30,
+    "db_id": "concert_singer",
+    "question": "Show countries where a singer above age 40 and a singer below 30 are from.",
+    "gold_sql": "SELECT country FROM singer WHERE age  >  40 INTERSECT SELECT country FROM singer WHERE age  <  30",
+    "pred_sql": "SELECT T1.Country FROM singer AS T1 INNER JOIN singer AS T2 ON T1.Country = T2.Country WHERE T1.Age > 40 AND T2.Age < 30 GROUP BY T1.Country",
+    "match": true,
+    "difficulty": "Hard"
+  },
+  {
+    "id": 31,
+    "db_id": "concert_singer",
+    "question": "Show names for all stadiums except for stadiums having a concert in year 2014.",
+    "gold_sql": "SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014",
+    "pred_sql": "SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT DISTINCT Stadium_ID FROM concert WHERE Year = '2014')",
+    "match": true,
+    "difficulty": "Extra Hard"
+  },
+  {
+    "id": 32,
+    "db_id": "concert_singer",
+    "question": "What are the names of all stadiums that did not have a concert in 2014?",
+    "gold_sql": "SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014",
+    "pred_sql": "SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert WHERE Year = '2014')",
+    "match": true,
+    "difficulty": "Extra Hard"
+  },
+  {
+    "id": 33,
+    "db_id": "concert_singer",
+    "question": "Show the name and theme for all concerts and the number of singers in each concert.",
+    "gold_sql": "SELECT T2.concert_name ,  T2.theme ,  count(*) FROM singer_in_concert AS T1 JOIN concert AS T2 ON T1.concert_id  =  T2.concert_id GROUP BY T2.concert_id",
+    "pred_sql": "SELECT c.concert_Name, c.Theme, COUNT(si.Singer_ID) FROM concert c JOIN singer_in_concert si ON c.concert_ID = si.concert_ID GROUP BY c.concert_ID",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 34,
+    "db_id": "concert_singer",
+    "question": "What are the names , themes , and number of singers for every concert ?",
+    "gold_sql": "select t2.concert_name ,  t2.theme ,  count(*) from singer_in_concert as t1 join concert as t2 on t1.concert_id  =  t2.concert_id group by t2.concert_id",
+    "pred_sql": "SELECT c.concert_Name, c.Theme, COUNT(si.Singer_ID) FROM concert c JOIN singer_in_concert si ON c.concert_ID = si.concert_ID GROUP BY c.concert_ID",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 35,
+    "db_id": "concert_singer",
+    "question": "List singer names and number of concerts for each singer.",
+    "gold_sql": "SELECT T2.name ,  count(*) FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id GROUP BY T2.singer_id",
+    "pred_sql": "SELECT s.Name, COUNT(si.Singer_ID) FROM singer s INNER JOIN singer_in_concert si ON s.Singer_ID = si.Singer_ID GROUP BY s.Singer_ID",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 36,
+    "db_id": "concert_singer",
+    "question": "What are the names of the singers and number of concerts for each person?",
+    "gold_sql": "SELECT T2.name ,  count(*) FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id GROUP BY T2.singer_id",
+    "pred_sql": "SELECT s.Name, COUNT(si.Singer_ID) FROM singer s INNER JOIN singer_in_concert si ON s.Singer_ID = si.Singer_ID GROUP BY s.Singer_ID",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 37,
+    "db_id": "concert_singer",
+    "question": "List all singer names in concerts in year 2014.",
+    "gold_sql": "SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id JOIN concert AS T3 ON T1.concert_id  =  T3.concert_id WHERE T3.year  =  2014",
+    "pred_sql": "SELECT s.Name FROM singer s INNER JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID INNER JOIN concert c ON sic.concert_ID = c.concert_ID WHERE c.Year = '2014'",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 38,
+    "db_id": "concert_singer",
+    "question": "What are the names of the singers who performed in a concert in 2014?",
+    "gold_sql": "SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id JOIN concert AS T3 ON T1.concert_id  =  T3.concert_id WHERE T3.year  =  2014",
+    "pred_sql": "SELECT s.Name FROM singer s INNER JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID INNER JOIN concert c ON sic.concert_ID = c.concert_ID WHERE c.Year = '2014'",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 39,
+    "db_id": "concert_singer",
+    "question": "what is the name and nation of the singer who have a song having 'Hey' in its name?",
+    "gold_sql": "SELECT name ,  country FROM singer WHERE song_name LIKE '%Hey%'",
+    "pred_sql": "SELECT s.Name, s.Country FROM singer s INNER JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID INNER JOIN concert c ON c.concert_ID = sic.concert_ID INNER JOIN stadium st ON st.Stadium_ID = c.Stadium_ID WHERE s.Song_Name LIKE 'Hey%'",
+    "match": false,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 40,
+    "db_id": "concert_singer",
+    "question": "What is the name and country of origin of every singer who has a song with the word 'Hey' in its title?",
+    "gold_sql": "SELECT name ,  country FROM singer WHERE song_name LIKE '%Hey%'",
+    "pred_sql": "SELECT s.Name, s.Country FROM singer s INNER JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID INNER JOIN concert c ON c.concert_ID = sic.concert_ID INNER JOIN stadium st ON st.Stadium_ID = c.Stadium_ID WHERE s.Song_Name LIKE '%Hey%'",
+    "match": false,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 41,
+    "db_id": "concert_singer",
+    "question": "Find the name and location of the stadiums which some concerts happened in the years of both 2014 and 2015.",
+    "gold_sql": "SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2014 INTERSECT SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2015",
+    "pred_sql": "SELECT T1.Name, T1.Location FROM stadium AS T1 INNER JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID WHERE T2.Year = '2014' OR T2.Year = '2015' GROUP BY T1.Stadium_ID HAVING COUNT(DISTINCT T2.Year) = 2",
+    "match": true,
+    "difficulty": "Extra Hard"
+  },
+  {
+    "id": 42,
+    "db_id": "concert_singer",
+    "question": "What are the names and locations of the stadiums that had concerts that occurred in both 2014 and 2015?",
+    "gold_sql": "SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2014 INTERSECT SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2015",
+    "pred_sql": "SELECT T1.Name, T1.Location FROM stadium AS T1 INNER JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID WHERE T2.Year = '2014' GROUP BY T2.Stadium_ID HAVING COUNT(DISTINCT T2.Year) = 2",
+    "match": false,
+    "difficulty": "Extra Hard"
+  },
+  {
+    "id": 43,
+    "db_id": "concert_singer",
+    "question": "Find the number of concerts happened in the stadium with the highest capacity .",
+    "gold_sql": "select count(*) from concert where stadium_id = (select stadium_id from stadium order by capacity desc limit 1)",
+    "pred_sql": "SELECT COUNT(*) FROM concert WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1)",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 44,
+    "db_id": "concert_singer",
+    "question": "What are the number of concerts that occurred in the stadium with the largest capacity ?",
+    "gold_sql": "select count(*) from concert where stadium_id = (select stadium_id from stadium order by capacity desc limit 1)",
+    "pred_sql": "SELECT COUNT(*) FROM concert WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1)",
+    "match": true,
+    "difficulty": "Medium"
+  },
+  {
+    "id": 45,
+    "db_id": "pets_1",
+    "question": "Find the number of pets whose weight is heavier than 10.",
+    "gold_sql": "SELECT count(*) FROM pets WHERE weight  >  10",
+    "pred_sql": "SELECT COUNT(*) FROM Pets WHERE weight > 10",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 46,
+    "db_id": "pets_1",
+    "question": "How many pets have a greater weight than 10?",
+    "gold_sql": "SELECT count(*) FROM pets WHERE weight  >  10",
+    "pred_sql": "SELECT COUNT(*) FROM Pets WHERE weight > 10",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 47,
+    "db_id": "pets_1",
+    "question": "Find the weight of the youngest dog.",
+    "gold_sql": "SELECT weight FROM pets ORDER BY pet_age LIMIT 1",
+    "pred_sql": "SELECT MIN(weight) FROM Pets WHERE PetType = 'dog'",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 48,
+    "db_id": "pets_1",
+    "question": "How much does the youngest dog weigh?",
+    "gold_sql": "SELECT weight FROM pets ORDER BY pet_age LIMIT 1",
+    "pred_sql": "SELECT MIN(weight) FROM Pets WHERE PetType = 'dog'",
+    "match": true,
+    "difficulty": "Easy"
+  },
+  {
+    "id": 49,
+    "db_id": "pets_1",
+    "question": "Find the maximum weight for each type of pet. List the maximum weight and pet type.",
+    "gold_sql": "SELECT max(weight) ,  petType FROM pets GROUP BY petType",
+    "pred_sql": "SELECT PetType, MAX(weight) FROM Pets GROUP BY PetType",
+    "match": false,
+    "difficulty": "Medium"
+  }
+]

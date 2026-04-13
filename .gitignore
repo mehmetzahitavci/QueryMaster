@@ -1,11 +1,17 @@
 venv/
-data/
-__pycache__/
+env/
 
 adapters/
+adapters_backup/
+adapters_best/
+*.safetensors
+
 data/
-
-.DS_Store
-
+spider/
+test-suite-sql-eval/
 *.parquet
 *.arrow
+
+__pycache__/
+*.pyc
+.DS_Store
