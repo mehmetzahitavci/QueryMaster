@@ -2,3 +2,4 @@ mlx-lm
 streamlit
 transformers
 datasets
+pandas
